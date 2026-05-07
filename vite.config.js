@@ -2,13 +2,12 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
     proxy: {
       "/api": {
-        target: "https://resume-builder-main-backend.onrender.com", // change this port if your server runs on a different port
+        target: "https://event-back-end-snowy.vercel.app",
         changeOrigin: true,
       },
     },
