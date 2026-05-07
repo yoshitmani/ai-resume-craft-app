@@ -68,7 +68,7 @@ const SkillsForm = ({ data, onChange }) => {
     }
   }, [debouncedSkills]);
 
-  // ✅ FIXED FUNCTION
+  // AI Suggestion Fetch Function
   const fetchSuggestions = useCallback(async (skills) => {
     setIsLoading(true);
     setError(null);
@@ -78,7 +78,7 @@ const SkillsForm = ({ data, onChange }) => {
       const token = localStorage.getItem("token");
 
       const { data: res } = await axios.post(
-        "/api/ai/skill-suggestions",
+        `${import.meta.env.VITE_BASE_URL}/api/ai/skill-suggestions`,
         { skills },
         {
           headers: {
@@ -90,7 +90,6 @@ const SkillsForm = ({ data, onChange }) => {
       console.log("Skill Suggestions Response:", res);
 
       if (res.success) {
-        // ✅ actual data object
         setSuggestions(res.data);
       } else {
         setError(res.message || "Failed to get suggestions.");
